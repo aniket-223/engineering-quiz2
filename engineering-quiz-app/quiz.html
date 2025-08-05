@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - EngQuiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="quiz.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="brand-text">
+                    <span class="brand-name">EngQuiz</span>
+                    <p class="brand-subtitle">Engineering Knowledge Assessment</p>
+                </div>
+            </div>
+            <div class="quiz-header-info">
+                <div class="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="timeDisplay">50:00</span>
+                </div>
+                <button class="btn btn-outline" onclick="submitQuiz()">
+                    Submit Quiz
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="quiz-main">
+        <div class="container">
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <i class="fas fa-graduation-cap loading-icon"></i>
+                <p class="loading-text">Loading quiz questions...</p>
+            </div>
+
+            <!-- Quiz Content -->
+            <div id="quizContent" class="quiz-content" style="display: none;">
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <div class="progress-info">
+                        <span class="progress-text">
+                            Question <span id="currentQuestion">1</span> of <span id="totalQuestions">50</span>
+                        </span>
+                        <span class="progress-percentage" id="progressPercentage">2% Complete</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Question Card -->
+                <div class="question-card">
+                    <div class="question-header">
+                        <h2 class="question-text" id="questionText">Loading question...</h2>
+                        <span class="question-subject" id="questionSubject">Subject</span>
+                    </div>
+                    <div class="question-options" id="questionOptions">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="quiz-navigation">
+                    <button class="btn btn-outline" id="prevBtn" onclick="previousQuestion()" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+
+                    <div class="answered-count">
+                        <span id="answeredCount">0</span> of <span id="totalCount">50</span> answered
+                    </div>
+
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Question Navigation Grid -->
+                <div class="question-nav-card">
+                    <h3 class="nav-title">Question Navigation</h3>
+                    <div class="question-grid" id="questionGrid">
+                        <!-- Question numbers will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Submit Confirmation Modal -->
+    <div id="submitModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Submit Quiz</h2>
+                <span class="close" onclick="closeSubmitModal()">&times;</span>
+            </div>
+            <div class="submit-modal-body">
+                <div class="submit-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Are you sure you want to submit?</h3>
+                    <p>You have answered <span id="finalAnsweredCount">0</span> out of <span id="finalTotalCount">50</span> questions.</p>
+                    <p class="warning-text">Once submitted, you cannot change your answers.</p>
+                </div>
+                <div class="submit-actions">
+                    <button class="btn btn-outline" onclick="closeSubmitModal()">Continue Quiz</button>
+                    <button class="btn btn-primary" onclick="confirmSubmit()">Submit Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
